@@ -1,0 +1,48 @@
+############################################
+# 🔒 ความปลอดภัยพื้นฐาน
+############################################
+
+Options -Indexes
+
+############################################
+# 🔐 Security Headers (เช็ค mod_headers)
+############################################
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+############################################
+# 🔐 ป้องกันเข้าถึงไฟล์สำคัญ (Apache 2.4)
+############################################
+
+
+############################################
+# 🤖 ป้องกัน bot / scanner
+############################################
+
+RewriteEngine On
+
+RewriteCond %{HTTP_USER_AGENT} (bot|crawler|spider|curl|wget|python|nikto|sqlmap|scan) [NC]
+RewriteRule .* - [F,L]
+
+############################################
+# 🚫 ป้องกัน SQLi / XSS เบื้องต้น
+############################################
+
+RewriteCond %{QUERY_STRING} (\.\./|%2e%2e|union|select|insert|drop|update|script|alert|onerror) [NC]
+RewriteRule .* - [F,L]
+
+############################################
+# 🚫 ป้องกันเรียกไฟล์ต้องห้าม
+############################################
+
+RewriteRule ^(phpinfo|shell|cmd|backup).* - [F,L]
+
+############################################
+# 🔒 บังคับ HTTPS (เปิดใช้เมื่อมี SSL)
+############################################
+
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
