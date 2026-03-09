@@ -1,0 +1,35 @@
+body {
+    background-color: #eaf3ff;
+    font-family: "Sarabun", sans-serif;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+.header {
+    background: linear-gradient(to right, #0078d7, #0d6efd);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.table {
+    background: white;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.btn-print {
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    transition: 0.2s;
+}
+.btn-print:hover {
+    background-color: #0d6efd;
+}

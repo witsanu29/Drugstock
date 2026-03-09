@@ -1,0 +1,48 @@
+ตารางหน่วยงาน (หัวใจ)
+
+CREATE TABLE units (
+    unit_id INT AUTO_INCREMENT PRIMARY KEY,
+    unit_code VARCHAR(20) UNIQUE,
+    unit_name VARCHAR(255),
+    status ENUM('active','inactive') DEFAULT 'active'
+);
+
+ตัวอย่างข้อมูล
+
+INSERT INTO units (unit_code, unit_name) VALUES
+('00000','ผู้ดูแลระบบข้อมูล'),
+('02725','โรงพยาบาลส่งเสริมสุขภาพตำบลบ้านซึม'),
+('02726','โรงพยาบาลส่งเสริมสุขภาพตำบลสัมฤทธิ์พัฒนา'),
+('02730','โรงพยาบาลส่งเสริมสุขภาพตำบลท่าหลวง'),
+('02731','โรงพยาบาลส่งเสริมสุขภาพตำบลจาร์ตำรา'),
+('02735','โรงพยาบาลส่งเสริมสุขภาพตำบลนิคมสร้างตนเอง 1'),
+('02736','โรงพยาบาลส่งเสริมสุขภาพตำบลหนองหญ้าขาว'),
+('02737','โรงพยาบาลส่งเสริมสุขภาพตำบลดงน้อย'),
+('02738','โรงพยาบาลส่งเสริมสุขภาพตำบลดงใหญ่'),
+('02740','โรงพยาบาลส่งเสริมสุขภาพตำบลมะค่าระเว'),
+('02741','โรงพยาบาลส่งเสริมสุขภาพตำบลหนองขาม'),
+('02742','โรงพยาบาลส่งเสริมสุขภาพตำบลหนองระเวียง');
+
+
+
+ผูก unit_id กับตารางหลักทั้งหมด
+ทุกตารางที่ “ข้อมูลไม่ควรปนกัน” ต้องมี unit_id
+🔹 main_warehouse
+ALTER TABLE main_warehouse 
+ADD unit_id INT NOT NULL AFTER id;
+
+🔹 sub_warehouse
+ALTER TABLE sub_warehouse 
+ADD unit_id INT NOT NULL AFTER id;
+
+🔹 daily_usage / non_drug_usage
+ALTER TABLE daily_usage 
+ADD unit_id INT NOT NULL AFTER id;
+
+🔹
+ALTER TABLE non_drug_usage 
+ADD unit_id INT NOT NULL AFTER id;
+
+🔹
+ALTER TABLE non_drug_warehouse
+ADD unit_id INT NOT NULL AFTER id;

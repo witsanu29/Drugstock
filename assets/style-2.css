@@ -1,0 +1,81 @@
+
+<style>
+
+  /* เมื่อเมาส์ชี้ลิงก์ ให้เป็นสีแดงเข้มและขยับนิดหน่อย */
+  .report-card .list-group-item a:hover {
+    color: #b30000;
+    transform: translateX(4px);
+  }
+  
+  .report-card .card-header i {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .report-card .card-header:hover i {
+    transform: rotate(15deg) scale(1.15);
+    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  }
+
+  .report-card .card-header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .report-card .card-header::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent);
+    pointer-events: none;
+  }
+
+  .report-card .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .report-card .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(111,66,193,0.3);
+  }
+  
+
+	.icon-wrapper {
+	background: rgba(255, 255, 255, 0.2);
+	padding: 10px 14px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.3s ease;
+	}
+	.icon-wrapper:hover {
+	transform: rotate(15deg) scale(1.1);
+	}
+
+	.icon-circle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: radial-gradient(circle at top left, #ffffff40, #ffffff10);
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+	transition: all 0.3s ease;
+	}
+	.icon-circle i {
+	color: #fff;
+	text-shadow: 0 0 6px rgba(255,255,255,0.7);
+	}
+	.card-header:hover .icon-circle {
+	transform: rotate(10deg) scale(1.1);
+	box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+	}
+	
+</style>

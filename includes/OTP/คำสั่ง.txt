@@ -1,0 +1,45 @@
+CREATE TABLE login_otp (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    otp_code CHAR(6) NOT NULL,
+    expire_at DATETIME NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
+
+if (password_verify($password, $user['password'])) {
+
+    // ✅ บันทึก session
+    $_SESSION['user_id']   = $user['id'];
+    $_SESSION['username']  = $user['username'];
+    $_SESSION['fullname']  = $user['fullname'];
+    $_SESSION['role']      = $user['role'];
+    $_SESSION['unit_id']   = $user['unit_id'];
+    $_SESSION['unit_name'] = $user['unit_name'];
+
+    // ==============================
+    // 🔔 แจ้งเตือน Telegram
+    // ==============================
+    date_default_timezone_set('Asia/Bangkok');
+
+    $ip_address = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
+    $date = date('d/m/Y');
+    $time = date('H:i:s');
+
+    $message = "🔐 <b>มีการเข้าสู่ระบบ</b>\n"
+        . "🌐 IP : <code>{$ip_address}</code>\n"
+        . "👤 Username : <b>{$user['username']}</b>\n"
+        . "🏷 Unit Code : <b>{$user['unit_code']}</b>\n"
+        . "🏢 หน่วยงาน : <b>{$user['unit_name']}</b>\n"
+        . "📅 วันที่ : {$date}\n"
+        . "⏰ เวลา : {$time}";
+
+    sendTelegram($message);
+
+    header("Location: index.php");
+    exit;
+}
